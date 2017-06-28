@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import CharacterList from './CharacterList';
+
 const API_URL = 'http://swapi.co/api/'
 
 function getListOfCharacters(options={}) {
@@ -8,7 +10,7 @@ function getListOfCharacters(options={}) {
         baseURL: API_URL
     })
         .then(res => {
-            console.log(res);
+            return res.data.results;
         })
 }
 
@@ -23,13 +25,17 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        getListOfCharacters();
+        getListOfCharacters()
+            .then(characters => {
+                this.setState({ characters })
+            });
     }
 
     render() {
         return (
             <div>
                 <h2>List of Characters</h2>
+                <CharacterList list={this.state.characters}/>
             </div>
         );
     }
