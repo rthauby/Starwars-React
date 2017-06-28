@@ -35,9 +35,11 @@ class CharacterDetail extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Character Details</h3>
-                <CharacterAttributes list={this.state.character} />
+            <div className="starWarsComponent">
+                <div className="verticalCenter">
+                    <h3>Character Details</h3>
+                    <CharacterAttributes list={this.state.character} />
+                </div>
             </div>
         );
     }

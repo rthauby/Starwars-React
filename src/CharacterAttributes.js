@@ -10,7 +10,7 @@ function CharacterAttributes(props) {
         list = (
             <ul>
                 {dataList.map((item, index) =>
-                    <li key={index}>{item[0]}: {item[1]}</li>
+                    <li key={index}><strong>{item[0]}</strong>: {item[1]}</li>
                 )}
             </ul>
         )

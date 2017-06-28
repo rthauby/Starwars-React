@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import './App.css';
 import CharacterList from './CharacterList';
 
 const API_URL = 'http://swapi.co/api/'
@@ -34,9 +34,11 @@ class Characters extends Component {
 
     render() {
         return (
-            <div>
-                <h2>List of Characters</h2>
-                <CharacterList list={this.state.characters}/>
+            <div className="starWarsComponent">
+                <div className="verticalCenter">
+                    <h2>List of Characters</h2>
+                    <CharacterList list={this.state.characters}/>
+                </div>
             </div>
         );
     }

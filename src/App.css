@@ -22,3 +22,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.starWarsComponent {
+  background-color: black;
+  background-image: url('./img/stars.jpg');
+  background-size: contain;
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 190px);
+}
