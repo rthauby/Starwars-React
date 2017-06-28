@@ -8,7 +8,7 @@ function CharacterList(props){
         list = (
             <ul>
                 {props.list.map((character, index) =>
-                    (<p key={index}>{character.name}</p>)
+                    (<li key={index}>{character.name}</li>)
                 )}
             </ul>
         )

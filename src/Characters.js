@@ -10,6 +10,7 @@ function getListOfCharacters(options={}) {
         baseURL: API_URL
     })
         .then(res => {
+            console.log(res);
             return res.data.results;
         })
 }
