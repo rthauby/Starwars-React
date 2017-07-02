@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import humanize from 'string-humanize'
 
 function CharacterAttributes(props) {
     let list = null;
@@ -8,9 +9,9 @@ function CharacterAttributes(props) {
         const dataList = _.toPairs(props.list);
 
         list = (
-            <ul>
+            <ul className='stdDataList'>
                 {dataList.map((item, index) =>
-                    <li key={index}><strong>{item[0]}</strong>: {item[1]}</li>
+                    <li key={index}><strong>{humanize(item[0])}: </strong><span>{item[1]}</span></li>
                 )}
             </ul>
         )
