@@ -1,11 +1,11 @@
 import React from 'react';
-import lodash from 'lodash';
+import _ from 'lodash';
 
 function CharacterAttributes(props) {
     let list = null;
 
     if(Object.keys(props.list)){
-        const dataList = lodash.toPairs(props.list);
+        const dataList = _.toPairs(props.list);
 
         list = (
             <ul>

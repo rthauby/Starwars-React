@@ -31,3 +31,14 @@
   width: 100%;
   height: calc(100vh - 190px);
 }
+
+.stdBtn {
+  margin: 1rem;
+  background-color: #ffcc00;
+  color: black !important;
+  text-shadow: none;
+}
+
+.stdBtn.disabled {
+  display: none;
+}

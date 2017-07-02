@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import _ from 'lodash';
+
 import './App.css';
+
 import CharacterList from './CharacterList';
+import Pagination from './Pagination';
 
 const API_URL = 'http://swapi.co/api/'
+let pageNum;
 
 function getListOfCharacters(options={}) {
-    return axios.get(`/people`,{
+    return axios.get(`/people/?page=${pageNum}`,{
         baseURL: API_URL
     })
         .then(res => {
-            console.log(res);
-            return res.data.results;
+            return _.pick(res.data, ['results', 'previous', 'next']);
+            // return res.data.results
+        })
+        .catch(error => {
+            // TODO
         })
 }
 
@@ -26,10 +34,28 @@ class Characters extends Component {
     }
 
     componentDidMount() {
+        this.refresh();
+    }
+
+    refresh() {
+        if(this.props.match.params.page){
+            pageNum = this.props.match.params.page;
+        } else {
+            pageNum = 1;
+        }
+
         getListOfCharacters()
-            .then(characters => {
-                this.setState({ characters })
-            });
+            .then(data => {
+                if(data.results) {
+                    this.setState({ characters: data.results });
+                }
+                if(data.previous) {
+                    this.setState({ previousPage: data.previous });
+                }
+                if(data.next) {
+                    this.setState({ nextPage: data.next });
+                }
+            })
     }
 
     render() {
@@ -38,6 +64,7 @@ class Characters extends Component {
                 <div className="verticalCenter">
                     <h2>List of Characters</h2>
                     <CharacterList list={this.state.characters}/>
+                    <Pagination previousPage={this.state.previousPage} nextPage={this.state.nextPage} callback={this.refresh}/>
                 </div>
             </div>
         );
