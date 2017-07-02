@@ -32,13 +32,27 @@
   height: calc(100vh - 190px);
 }
 
-.stdBtn {
+.stdBtn, .stdBtn:visited {
   margin: 1rem;
-  background-color: #ffcc00;
-  color: black !important;
+  background-color: #58b6f3;
+  color: #f6fbff;
   text-shadow: none;
+  padding: 0.5rem 1rem;
+  transform: skew(-30deg, 0);
+  display: inline-block;
+  border: 4px solid #009bff;
+  cursor: pointer;
+}
+
+.stdBtn span {
+  transform: skew(30deg, 0);
+  display: inline-block;
 }
 
 .stdBtn.disabled {
   display: none;
+}
+
+.stdList {
+  margin: 0 0 2rem 0;
 }

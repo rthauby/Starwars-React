@@ -38,8 +38,8 @@ function Pagination(props) {
 
     return (
         <div>
-            <Link className={`stdBtn ${prevBtnClass}`} to={`/${prevBtnDest}`} onClick={handleClick}>Previous</Link>
-            <Link className={`stdBtn ${nextBtnClass}`} to={`/${nextBtnDest}`} onClick={handleClick}>Next</Link>
+            <Link className={`stdBtn ${prevBtnClass}`} to={`/${prevBtnDest}`} onClick={handleClick}><span>Previous</span></Link>
+            <Link className={`stdBtn ${nextBtnClass}`} to={`/${nextBtnDest}`} onClick={handleClick}><span>Next</span></Link>
         </div>
     )
 }

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import _ from 'lodash';
+
 import CharacterAttributes from './CharacterAttributes';
 
 const API_URL = 'http://swapi.co/api/'
+
+function handleClick() {
+    window.history.back();
+}
 
 function getCharacterDetails(options={}) {
     return axios.get(`/people/${options.id}`,{
@@ -11,7 +16,16 @@ function getCharacterDetails(options={}) {
     })
         .then(res => {
             console.log(res);
-            return res.data;
+            return _.pick(res.data, [
+                'name',
+                'gender',
+                'birth_year',
+                'eye_color',
+                'hair_color',
+                'height',
+                'mass',
+                'skin_color',
+            ]);
         })
 }
 
@@ -38,7 +52,12 @@ class CharacterDetail extends Component {
             <div className="starWarsComponent">
                 <div className="verticalCenter">
                     <h3>Character Details</h3>
-                    <CharacterAttributes list={this.state.character} />
+                    <div className='stdList'>
+                        <CharacterAttributes list={this.state.character} />
+                    </div>
+                    <div>
+                        <a className='stdBtn'onClick={handleClick}><span>Back</span></a>
+                    </div>
                 </div>
             </div>
         );

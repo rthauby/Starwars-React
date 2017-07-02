@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 
-import './App.css';
-
 import CharacterList from './CharacterList';
 import Pagination from './Pagination';
 
@@ -63,7 +61,9 @@ class Characters extends Component {
             <div className="starWarsComponent">
                 <div className="verticalCenter">
                     <h2>List of Characters</h2>
-                    <CharacterList list={this.state.characters}/>
+                    <div className='stdList'>
+                        <CharacterList list={this.state.characters}/>
+                    </div>
                     <Pagination previousPage={this.state.previousPage} nextPage={this.state.nextPage} callback={this.refresh}/>
                 </div>
             </div>
