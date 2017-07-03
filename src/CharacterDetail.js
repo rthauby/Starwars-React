@@ -57,7 +57,7 @@ class CharacterDetail extends Component {
         return (
             <div className="starWarsComponent">
                 <div className="verticalCenter">
-                    <h3>Character Details</h3>
+                    <h2>Character Details</h2>
                     <ErrorHandler callback={this.refresh} error={this.state.apiError} />
                     <div className='stdList'>
                         <CharacterAttributes list={this.state.character} />
