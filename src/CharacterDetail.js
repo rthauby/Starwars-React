@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 
 import CharacterAttributes from './CharacterAttributes';
+import ErrorHandler from './ErrorHandler';
 
 const API_URL = 'http://swapi.co/api/'
 
@@ -44,7 +45,10 @@ class CharacterDetail extends Component {
         getCharacterDetails({id : characterId})
             .then(character => {
                 this.setState({ character })
-            });
+            })
+            .catch(error => {
+                this.setState({apiError : error.toString()});
+            })
     }
 
     render() {
@@ -52,6 +56,7 @@ class CharacterDetail extends Component {
             <div className="starWarsComponent">
                 <div className="verticalCenter">
                     <h3>Character Details</h3>
+                    <ErrorHandler callback={this.refresh} error={this.state.apiError} />
                     <div className='stdList'>
                         <CharacterAttributes list={this.state.character} />
                     </div>
