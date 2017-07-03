@@ -43,6 +43,11 @@
   display: inline-block;
   border: 4px solid #009bff;
   cursor: pointer;
+  transition: 0.25s background-color linear;
+}
+
+.stdBtn:hover {
+  background-color: #009bff
 }
 
 .stdBtn span {
