@@ -41,14 +41,16 @@ class CharacterDetail extends Component {
     }
 
     componentDidMount() {
-        const characterId = this.props.match.params.id;
-        getCharacterDetails({id : characterId})
-            .then(character => {
-                this.setState({ character })
-            })
-            .catch(error => {
-                this.setState({apiError : error.toString()});
-            })
+        if(this.props.match){
+            const characterId = this.props.match.params.id;
+            getCharacterDetails({id : characterId})
+                .then(character => {
+                    this.setState({ character })
+                })
+                .catch(error => {
+                    this.setState({apiError : error.toString()});
+                })
+        }
     }
 
     render() {

@@ -33,7 +33,7 @@ class Characters extends Component {
     }
 
     refresh() {
-        if(this.props.match.params.page){
+        if(this.props.match && this.props.match.params.page){
             pageNum = this.props.match.params.page;
         } else {
             pageNum = 1;
