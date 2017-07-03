@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import CharacterList from './CharacterList';
 import Pagination from './Pagination';
+import ErrorHandler from './ErrorHandler';
 
 const API_URL = 'http://swapi.co/api/'
 let pageNum;
@@ -14,10 +15,6 @@ function getListOfCharacters(options={}) {
     })
         .then(res => {
             return _.pick(res.data, ['results', 'previous', 'next']);
-            // return res.data.results
-        })
-        .catch(error => {
-            // TODO
         })
 }
 
@@ -44,21 +41,25 @@ class Characters extends Component {
 
         getListOfCharacters()
             .then(data => {
-                if(data.results) {
+                if(data && data.results) {
                     this.setState({ characters: data.results });
                 }
-                if(data.previous) {
+                if(data && data.previous) {
                     this.setState({ previousPage: data.previous });
                 }
-                if(data.next) {
+                if(data && data.next) {
                     this.setState({ nextPage: data.next });
                 }
+            })
+            .catch(error => {
+                this.setState({apiError : error.toString()});
             })
     }
 
     render() {
         return (
             <div className="starWarsComponent">
+                <ErrorHandler callback={this.refresh} error={this.state.apiError} />
                 <div className="verticalCenter">
                     <h2>List of Characters</h2>
                     <div className='stdList'>
